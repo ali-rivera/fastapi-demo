@@ -3,7 +3,7 @@
 from fastapi import FastAPI
 from typing import Optional
 from pydantic import BaseModel
-# import boto3
+import boto3
 
 app = FastAPI()
 
@@ -30,7 +30,10 @@ def add_me(number_1: int, number_2: int):
     return {"sum": sum}
 
 # Let's develop a new one:
-
+@app.get("/divde/{number_1}/{number_2}")
+def divide_me(number_1: int, number_2:int):
+    div = number_2/number_1
+    return {"quotient":div}
 
 ## Parameters
 # Introduce parameter data types and defaults from the Optional library
@@ -85,9 +88,9 @@ def patch_item(item_id: int, item: Item):
 
 
 # Incorporate with boto3: simpler than the `requests` library:
-# @app.get("/aws/s3")
-# def fetch_buckets():
-#     s3 = boto3.client("s3")
-#     response = s3.list_buckets()
-#     buckets = response['Buckets']
-#     return {"buckets": buckets}
+@app.get("/aws/s3")
+def fetch_buckets():
+    s3 = boto3.client("s3")
+    response = s3.list_buckets()
+    buckets = response['Buckets']
+    return {"buckets": buckets}
