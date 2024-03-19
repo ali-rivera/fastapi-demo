@@ -2,6 +2,10 @@ fastapi
 typing
 pydantic
 requests
+<<<<<<< HEAD
 #json
+=======
+>>>>>>> refs/remotes/origin/main
 uvicorn
 boto3
+redis
